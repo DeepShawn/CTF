@@ -1,0 +1,88 @@
+/* CTFKit Web 版的页面布局。只写布局；颜色、字体、间距、圆角全部取自 TesseraUI 的设计令牌。 */
+body { margin: 0; background: var(--ts-bg-canvas); color: var(--ts-text-primary); }
+.shell { display: flex; min-height: 100vh; }
+.shell > .ts-sidebar { position: sticky; top: 0; height: 100vh; flex: none; }
+.main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+main { flex: 1; width: 100%; box-sizing: border-box; padding-top: var(--ts-space-6); padding-bottom: var(--ts-space-16); outline: none; }
+
+.brand { display: inline-flex; align-items: center; gap: var(--ts-space-3); color: inherit; text-decoration: none;
+  font: 600 20px/1 var(--ts-font-serif); font-variation-settings: var(--ts-font-serif-axes); }
+.mark { display: grid; grid-template-columns: repeat(2, 9px); gap: 2px; }
+.mark i { height: 9px; border-radius: 2px; background: var(--ts-accent-solid); }
+.mark i:nth-child(1) { border-top-left-radius: 4px; }
+.mark i:nth-child(2) { background: var(--ts-warning-solid); }
+.mark i:nth-child(3) { background: var(--ts-text-primary); }
+.mark i:nth-child(4) { border-bottom-right-radius: 4px; opacity: .55; }
+.sidebar-search { padding: 0 var(--ts-space-3) var(--ts-space-2); }
+
+.topbar { position: sticky; top: 0; z-index: 5; gap: var(--ts-space-3); padding: 0 var(--ts-space-6); }
+.topbar .ts-navbar-title { font: var(--ts-font-title-3); }
+.py-status { display: inline-flex; align-items: center; gap: var(--ts-space-2); font: var(--ts-font-caption); color: var(--ts-text-secondary); white-space: nowrap; }
+.py-status[data-state="ready"] i { color: var(--ts-success-text); }
+.py-status[data-state="error"] { color: var(--ts-danger-text); }
+.mobile-only { display: none; }
+
+.hero { display: grid; gap: var(--ts-space-4); margin-bottom: var(--ts-space-6); }
+.hero h1, .hero p { margin: 0; }
+.quick { display: grid; gap: var(--ts-space-3); margin-bottom: var(--ts-space-8); }
+.search-row { margin-bottom: var(--ts-space-6); }
+.mobile-search { display: none; }
+.cat { margin-bottom: var(--ts-space-10); }
+.cat > h2 { display: flex; align-items: center; gap: var(--ts-space-3); margin: 0 0 var(--ts-space-4); }
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--ts-space-3); }
+.tool-card { display: grid; gap: var(--ts-space-2); align-content: start; text-decoration: none; color: inherit; }
+.tool-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ts-space-2); }
+.tool-card[hidden], .cat[hidden] { display: none; }
+.about p { margin: var(--ts-space-2) 0 0; }
+
+.tool-head { display: grid; gap: var(--ts-space-3); margin-bottom: var(--ts-space-6); }
+.tool-head h1, .tool-head p { margin: 0; }
+.tool-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--ts-space-4); align-items: start; margin-bottom: var(--ts-space-4); }
+.tool-form { display: grid; gap: var(--ts-space-4); }
+.tool-form .options { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: var(--ts-space-4); align-items: end; }
+.tool-form .options .field-segmented, .tool-form .options .field-string { grid-column: 1 / -1; }
+.tool-form p { margin: 0; }
+.ts-field[hidden] { display: none; }
+.mono textarea, .mono input, .mono { font-family: var(--ts-font-mono); }
+.tool-output { display: grid; gap: var(--ts-space-3); min-height: 200px; align-content: start; position: sticky; top: 72px; }
+.output-head { display: flex; align-items: center; gap: var(--ts-space-2); }
+#output { display: grid; gap: var(--ts-space-3); min-width: 0; }
+#output .ts-code pre { max-height: 60vh; overflow: auto; white-space: pre-wrap; word-break: break-all; }
+.output-table { max-height: 60vh; }
+.selectable { user-select: text; word-break: break-all; }
+#output p { margin: 0; }
+.ts-empty.compact { padding: var(--ts-space-8) var(--ts-space-4); }
+.running { display: grid; gap: var(--ts-space-3); justify-items: start; }
+.running .ts-progress { width: 100%; }
+
+.explain { display: grid; gap: var(--ts-space-4); }
+.md { font: var(--ts-font-body); line-height: var(--ts-line-height-reading); max-width: 72ch; }
+.md p, .md ul, .md ol { margin: 0 0 var(--ts-space-3); }
+.md code, .panel p code { font-family: var(--ts-font-mono); font-size: .92em; background: var(--ts-fill-default); padding: 1px 5px; border-radius: var(--ts-radius-sm); }
+.md .ts-table-wrap { margin: 0 0 var(--ts-space-3); }
+.md .ts-table code { white-space: nowrap; }
+.panel[hidden] { display: none; }
+.panel > p { margin: 0 0 var(--ts-space-3); }
+.settings-body { display: grid; gap: var(--ts-space-4); padding: var(--ts-space-2) 0 var(--ts-space-4); }
+
+.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--ts-space-2); padding-top: var(--ts-space-4); padding-bottom: var(--ts-space-6);
+  font: var(--ts-font-caption); color: var(--ts-text-tertiary); box-sizing: border-box; width: 100%; }
+
+@media (max-width: 1100px) {
+  .tool-layout { grid-template-columns: minmax(0, 1fr); }
+  .tool-output { position: static; }
+}
+@media (max-width: 900px) {
+  .shell > .ts-sidebar { display: none; }
+  .mobile-only { display: inline-flex; }
+  .mobile-search { display: block; }
+  .topbar { padding: 0 var(--ts-space-4); }
+  .brand.has-back { display: none; }
+  .py-status-text { display: none; }
+  main { padding-top: var(--ts-space-4); }
+}
+
+/* 侧边栏目录很长，单独滚动 */
+@media (min-width: 901px) { .shell > .ts-sidebar { display: flex; flex-direction: column; } }
+#side-nav { flex: 1; min-height: 0; overflow-y: auto; padding-bottom: var(--ts-space-6); display: flex; flex-direction: column; }
+.topbar .ts-navbar-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

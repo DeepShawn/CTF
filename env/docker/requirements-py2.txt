@@ -1,0 +1,9 @@
+# Docker 环境中 Python 2.7 的第三方库：固定在仍支持 Python 2.7 的版本
+pycryptodome==3.20.0
+gmpy2==2.0.8
+sympy==1.5.1
+Pillow==6.2.2
+requests==2.27.1
+pyelftools==0.29
+dpkt==1.9.8
+pwntools==4.15.1

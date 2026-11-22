@@ -1,0 +1,3 @@
+[submodule "vendor/TesseraUI"]
+	path = vendor/TesseraUI
+	url = https://github.com/DeepShawn/TesseraUI.git

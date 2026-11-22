@@ -2,7 +2,7 @@
 
 | 项目 | 内容 |
 |---|---|
-| 文档状态 | 计划稿，待确认 |
+| 文档状态 | v0.1 已完成（2026-11-22），其余为计划 |
 | 编写日期 | 2026-11-22 |
 | 项目暂名 | CTFKit（中文名：CTF 工具包，名称待定，见第 10 节） |
 | 目标平台 | Web、Android、iOS |
@@ -161,10 +161,25 @@ CTF/
 
 ### 2.4 第三方库在各端的可用性
 
-下表为计划阶段的判断，每一项都会在 v0.1 实施时逐一验证，结果更新到本表。
+下表为 v0.1 实际查询的结果（2026-11-22）：Pyodide 查 314.0.8 版的 `pyodide-lock.json`；Chaquopy 查其官方包仓库；
+iOS 查 PyPI 与 BeeWare 仓库中的 iOS 预编译包；Docker 为实际安装结果。
 
-| 库 | 用途 | Web（Pyodide） | Android（Chaquopy） | iOS | Docker | 缺失时的替代 |
+| 库 | 用途 | Web（Pyodide 314.0.8） | Android（Chaquopy） | iOS | Docker（Py3 / Py2） | 缺失时的替代 |
 |---|---|---|---|---|---|---|
+| 标准库 | 编码、哈希、文件格式 | 有 | 有 | 有 | 有 / 有 | — |
+| `pycryptodome` | AES、DES、RSA 等 | 有（3.23.0） | 有 | 无现成包，需自行编译 | 有 / 有（3.20.0） | 纯 Python 的教学版实现 |
+| `Pillow` | 图片隐写 | 有（12.2.0） | 有 | 有（PyPI 官方 iOS 包） | 有 / 有（6.2.2） | — |
+| `numpy` | 图像、音频数值处理 | 有（2.4.6） | 有 | 有（BeeWare 仓库） | 有 / 无 | 纯 Python 循环（只用于小文件） |
+| `gmpy2` | 大数运算 | 有（2.3.0） | 无 | 无 | 有 / 有（2.0.8） | Python 内置大整数 + `ctfkit.crypto.nt` |
+| `sympy` | 分解、数论 | 有（1.14.0） | 有（纯 Python） | 有（纯 Python） | 有 / 有（1.5.1） | — |
+| `opencv-python` | 盲水印、图像处理 | 有 | 有 | 无 | 未安装 | 只在 Web、Android 与 Docker 中提供 |
+| `pwntools` | PWN 交互、ROP | 无 | 无 | 无 | 有 / 有（4.15.1） | 移动端提供 `cyclic`、`p32/p64`、格式化字符串载荷计算等纯 Python 小功能 |
+| `dpkt`、`pyelftools` | 流量、ELF 解析 | 不在内置列表，纯 Python，可用 micropip 从 PyPI 安装 | 纯 Python，可直接打包 | 同左 | 有 / 有 | — |
+| `z3-solver`、`capstone`、`lief` | 约束求解、反汇编、ELF 修改 | 无 | 无 | 无 | z3 有 / 无；capstone 随 pwntools 安装 | 只在 Docker 中提供 |
+
+结论：v0.1～v0.4 的工具只用标准库，三端都没有障碍；v0.5 之后用到的 `pycryptodome` 需要为 iOS 自行编译（或改用纯 Python 实现），`gmpy2` 只作为可选加速。
+
+---|---|---|---|---|---|---|
 | 标准库（`base64`、`hashlib`、`zlib`、`struct`、`zipfile` 等） | 编码、哈希、文件格式 | 有 | 有 | 有 | 有 | — |
 | `pycryptodome` | AES、DES、RSA 等 | 有（官方包） | 有 | 需自行编译 | 有 | 纯 Python 的教学版实现（速度慢但结果一致） |
 | `Pillow` | 图片隐写 | 有 | 有 | 需自行编译 | 有 | 无，iOS 端改用系统图像接口取像素后交给 Python |
@@ -215,7 +230,7 @@ docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:latest
 | 逆向与 PWN | `gdb` + `pwndbg`、`radare2`、`checksec`、`ROPgadget`、`one_gadget`、多版本 `glibc`（2.23 / 2.27 / 2.29 / 2.31 / 2.35，对应教材第 7 章各节） |
 | Web | `sqlmap`、`dirsearch`、`nmap`（仅用于自己的靶场或已获授权的目标） |
 
-镜像分两个标签：`latest`（完整，约 3 GB）和 `lite`（只含两个 Python 版本与 Python 库，约 600 MB），满足不同网络条件。
+镜像分两个标签：`latest`（完整，约 3 GB）和 `lite`（两个 Python 版本、Python 库与少量命令行工具；v0.1 实测约 1.8 GB，主要是编译 Python 2 扩展所需的编译器和 pwntools 依赖）。v0.1 只提供 `lite`，`latest` 暂时与它相同。
 
 ### 3.4 本地运行器（可选）
 
@@ -341,7 +356,7 @@ docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:latest
 
 | 版本 | 主题 | 主要内容 | 预计周期 |
 |---|---|---|---|
-| **v0.1** | 核心与环境 | `ctfkit` 包结构与工具描述文件格式；编码（1.1）、古典密码（3.1）、哈希（3.4）首批约 40 个工具；命令行入口；Docker 完整环境（Python 2.7 + 3）；2.4 节可用性表逐项验证 | 3 周 |
+| **v0.1** ✅ | 核心与环境 | `ctfkit` 包结构与工具描述文件格式；编码（1.1）、古典密码（3.1）、哈希（3.4）首批约 40 个工具；命令行入口；Docker 完整环境（Python 2.7 + 3）；2.4 节可用性表逐项验证 | 已完成，见下方说明 |
 | **v0.2** | Web 版 | TesseraUI Web + Pyodide（Web Worker）；五个主页面；由描述文件生成工具页；PWA 离线；部署到 GitHub Pages | 3 周 |
 | **v0.3** | Android 版 | Compose + TesseraUI + Chaquopy；手机布局；与 Web 共用工具描述文件 | 3～4 周 |
 | **v0.4** | iOS 版 | SwiftUI + TesseraUI + CPython 3.13；手机布局；TestFlight 测试 | 3～4 周 |
@@ -354,6 +369,20 @@ docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:latest
 | **v1.x** | 靶场 | 基于 Docker Compose 的本地靶场，与例题对应（见 range.md） | 另行计划 |
 
 每个版本完成后，在本表中勾选并注明实际完成情况，格式与 TesseraUI 的计划文档一致。
+
+### v0.1 实际完成情况（2026-11-22）
+
+- [x] `ctfkit` 包：42 个工具（编码 23、古典密码 13、哈希 4、通用 2），全部只用标准库，支持 Python 3.8～3.14；
+      工具描述信息由 `@tool(...)` 登记在代码中，`ctfkit manifest` 导出为 JSON，界面据此生成（比原计划的“单独 JSON 文件”少一处需要同步的地方）
+- [x] 命令行：`ctfkit list / info / run / magic / manifest`
+- [x] 单元测试 21 组：RFC 4648、NIST 等标准测试向量，每个工具的示例，编码工具往返测试
+- [x] Docker 环境 `lite`：Python 2.7.18 + Python 3.13，两边都装好 pwntools、pycryptodome、gmpy2 等库；`ctfkit-check` 自检
+- [x] 2.4 节可用性表已按实际查询结果更新
+- [x] **提前发布 Web 预览版**到 GitHub Pages：TesseraUI v0.6.0 + Pyodide 314.0.8（Python 3.14），由描述文件生成全部工具页，
+      “原理 / Python 代码”讲解、浅色 / 深色、三种外观、离线缓存；Chromium 桌面与手机尺寸端到端测试通过
+- [ ] JSFuck（1.1.11）：解码需要 JavaScript 引擎，移到 v0.2 在 Web 端实现
+- [ ] Docker `latest` 完整版（gdb、多版本 glibc、sqlmap 等）：随 v0.5～v0.7 对应章节加入，目前 `latest` 与 `lite` 相同
+- v0.2 剩余工作：五个主页面中的“学习”“脚本”“例题”页，工具链（输出交给下一个工具），JSFuck
 
 ---
 

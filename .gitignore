@@ -1,0 +1,7 @@
+dist/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+.venv/
+env/docker/extra-ca/*.crt

@@ -4,14 +4,14 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-0F6B63.svg"></a>
-  <img alt="Status" src="https://img.shields.io/badge/status-计划中-B7862B.svg">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-B7862B.svg">
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-Web%20%7C%20Android%20%7C%20iOS-1F1B16.svg">
   <img alt="Python" src="https://img.shields.io/badge/python-2.7%20%7C%203-3D6B1C.svg">
 </p>
 
 ---
 
-> 本项目目前处于**计划阶段**，尚无可用代码。计划稿见 [plan/README.md](plan/README.md)。
+> **在线使用：<https://deepshawn.github.io/CTF/>**（v0.1，打开即用，计算全部在浏览器中完成）
 
 ## 简介
 
@@ -20,6 +20,35 @@ CTFKit 是一个 CTF（夺旗赛）工具包。它按参考教材的章节编排
 - **三端一致**：Web、Android、iOS 使用同一份 Python 算法代码与同一套 [TesseraUI](https://github.com/DeepShawn/TesseraUI) 界面设计；
 - **开箱可用**：Web 版打开即用，App 离线可用；电脑上用一条 Docker 命令即可获得装好 Python 2.7 与 Python 3 的完整环境；
 - **讲清原理**：每个工具附原理讲解与可运行、可修改的 Python 代码。
+
+## 快速开始
+
+| 方式 | 用法 |
+|---|---|
+| **网页** | 打开 <https://deepshawn.github.io/CTF/>。首次使用需下载约 10 MB 的 Python 运行环境，之后可离线使用 |
+| **Docker 完整环境** | `docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:lite`，Python 2.7 与 Python 3 并存，见 [env/docker](env/docker/README.md) |
+| **命令行** | `cd core && pip install . && ctfkit list`，只需 Python 3.8+，见 [core](core/README.md) |
+| Android / iOS | 计划在 v0.3、v0.4 推出 |
+
+v0.1 包含教材 1.1 编码、3.1 古典密码、3.4 哈希三部分，共 42 个工具。每个工具都附原理讲解，网页中可以直接查看它实际运行的 Python 代码。
+
+## 目录
+
+| 目录 | 内容 |
+|---|---|
+| [core/](core/) | Python 包 `ctfkit`：全部工具算法、命令行、单元测试 |
+| [apps/web/](apps/web/) | Web 版（TesseraUI + Pyodide），由 `scripts/build_web.py` 构建 |
+| [env/docker/](env/docker/) | Docker 完整环境 |
+| [plan/](plan/) | 计划文档与讲解示例 |
+| vendor/TesseraUI | 界面库（Git 子模块，固定在 v0.6.0） |
+
+本地运行 Web 版：
+
+```bash
+git clone --recursive https://github.com/DeepShawn/CTF.git && cd CTF
+python3 scripts/build_web.py
+python3 -m http.server -d dist/site 8000     # 浏览器打开 http://localhost:8000
+```
 
 ## 计划文档
 

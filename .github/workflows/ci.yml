@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  core:
+    name: ctfkit（Python ${{ matrix.python }}）
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.8", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: 单元测试
+        working-directory: core
+        run: python -m unittest discover -s tests -v
+      - name: 命令行
+        working-directory: core
+        run: |
+          pip install .
+          ctfkit list
+          echo "ZmxhZ3toaX0=" | ctfkit run encoding.base64 -
+
+  snippets:
+    name: 讲解示例（Python 2.7 与 3）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python 3
+        run: for f in plan/snippets/*.py; do echo "== $f"; python3 "$f"; done
+      - name: Python 2.7
+        run: docker run --rm -v "$PWD:/w" -w /w -e PYTHONIOENCODING=utf-8 python:2.7-slim sh -c 'for f in plan/snippets/*.py; do echo "== $f"; python "$f" || exit 1; done'
+
+  web:
+    name: Web 版构建
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python scripts/build_web.py

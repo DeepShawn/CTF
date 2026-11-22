@@ -1,0 +1,11 @@
+# Docker 环境中 Python 3 的第三方库
+pycryptodome
+gmpy2
+sympy
+Pillow
+numpy
+requests
+pyelftools
+dpkt
+z3-solver
+pwntools

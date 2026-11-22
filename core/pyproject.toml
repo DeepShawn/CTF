@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ctfkit"
+version = "0.1.0"
+description = "CTFKit：面向初学者的 CTF 工具包核心库"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "DeepShawn" }]
+
+[project.scripts]
+ctfkit = "ctfkit.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ctfkit*"]

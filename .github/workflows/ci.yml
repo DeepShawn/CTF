@@ -14,18 +14,18 @@ jobs:
         python: ["3.8", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python }}
+      # Python 由 uv 安装独立构建版本，较老的 3.8 在新版运行器上也能使用
+      - uses: astral-sh/setup-uv@v6
       - name: 单元测试
         working-directory: core
-        run: python -m unittest discover -s tests -v
+        run: uv run --python ${{ matrix.python }} --no-project python -m unittest discover -s tests -v
       - name: 命令行
         working-directory: core
         run: |
-          pip install .
-          ctfkit list
-          echo "ZmxhZ3toaX0=" | ctfkit run encoding.base64 -
+          uv venv --python ${{ matrix.python }} /tmp/venv
+          uv pip install --python /tmp/venv/bin/python .
+          /tmp/venv/bin/ctfkit list
+          echo "ZmxhZ3toaX0=" | /tmp/venv/bin/ctfkit run encoding.base64 -
 
   snippets:
     name: 讲解示例（Python 2.7 与 3）

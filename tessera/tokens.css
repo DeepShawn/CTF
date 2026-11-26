@@ -1,0 +1,357 @@
+/* TesseraUI v0.6.0 — 由 scripts/build.mjs 从 tokens/*.json 生成，请勿手改。 */
+
+/* ---------- 非颜色 token ---------- */
+:root {
+  --ts-font-sans: "Instrument Sans", "PingFang SC", "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI Variable", "Segoe UI", Roboto, sans-serif;
+  --ts-font-serif: Fraunces, "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
+  --ts-font-serif-axes: "SOFT" 100, "WONK" 0;
+  --ts-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --ts-font-weight-regular: 400;
+  --ts-font-weight-semibold: 600;
+  --ts-font-display: 600 44px/52px var(--ts-font-serif);
+  --ts-tracking-display: -0.02em;
+  --ts-font-title-1: 600 32px/40px var(--ts-font-serif);
+  --ts-tracking-title-1: -0.015em;
+  --ts-font-title-2: 600 24px/32px var(--ts-font-serif);
+  --ts-tracking-title-2: -0.01em;
+  --ts-font-title-3: 600 19px/26px var(--ts-font-serif);
+  --ts-tracking-title-3: 0em;
+  --ts-font-body: 400 16px/26px var(--ts-font-sans);
+  --ts-tracking-body: 0em;
+  --ts-font-body-sm: 400 14px/22px var(--ts-font-sans);
+  --ts-tracking-body-sm: 0em;
+  --ts-font-label: 600 14px/20px var(--ts-font-sans);
+  --ts-tracking-label: 0em;
+  --ts-font-caption: 400 12px/18px var(--ts-font-sans);
+  --ts-tracking-caption: 0em;
+  --ts-font-overline: 600 11px/16px var(--ts-font-sans);
+  --ts-tracking-overline: 0.12em;
+  --ts-line-height-reading: 1.75;
+  --ts-space-0: 0px;
+  --ts-space-1: 4px;
+  --ts-space-2: 8px;
+  --ts-space-3: 12px;
+  --ts-space-4: 16px;
+  --ts-space-5: 20px;
+  --ts-space-6: 24px;
+  --ts-space-8: 32px;
+  --ts-space-10: 40px;
+  --ts-space-12: 48px;
+  --ts-space-16: 64px;
+  --ts-size-sm: 32px;
+  --ts-size-md: 40px;
+  --ts-size-lg: 48px;
+  --ts-size-touch-min: 44px;
+  --ts-radius-grout: 6px;
+  --ts-radius-sm: 8px;
+  --ts-radius-md: 14px;
+  --ts-radius-lg: 18px;
+  --ts-radius-xl: 24px;
+  --ts-radius-2xl: 32px;
+  --ts-radius-full: 9999px;
+  --ts-border-width: 1px;
+  --ts-focus-ring-width: 2px;
+  --ts-focus-ring-offset: 2px;
+  --ts-focus-glow-width: 3px;
+  --ts-opacity-disabled: 0.4;
+  --ts-glass-blur: 20px;
+  --ts-glass-saturation: 180%;
+  --ts-tile-grout: 3px;
+  --ts-tile-edge: 2px;
+  --ts-round-pill: 9999px;
+  --ts-round-card: 28px;
+  --ts-round-panel: 36px;
+  --ts-round-row: 22px;
+  --ts-round-menu: 24px;
+  --ts-round-gap: 8px;
+  --ts-round-press-scale: 0.97;
+  --ts-flow-control: 17px;
+  --ts-flow-card: 26px;
+  --ts-flow-panel: 34px;
+  --ts-flow-row: 18px;
+  --ts-flow-menu: 22px;
+  --ts-flow-press-scale: 0.96;
+  --ts-flow-ripple-duration: 760ms;
+  --ts-flow-splash-duration: 640ms;
+  --ts-z-sticky: 100;
+  --ts-z-overlay: 200;
+  --ts-z-modal: 300;
+  --ts-z-popover: 400;
+  --ts-z-toast: 500;
+  --ts-z-tooltip: 600;
+  --ts-duration-instant: 100ms;
+  --ts-duration-fast: 150ms;
+  --ts-duration-normal: 250ms;
+  --ts-duration-slow: 350ms;
+  --ts-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ts-ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ts-ease-exit: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ts-ease-linear: linear;
+  --ts-spring-snappy: linear(0, 0.0265, 0.0905, 0.1763, 0.2723, 0.3705, 0.4656, 0.5539, 0.6337, 0.7039, 0.7645, 0.8159, 0.8586, 0.8936, 0.9219, 0.9443, 0.9618, 0.9752, 0.9852, 0.9926, 0.9976, 1.0012, 1.0036, 1.0049, 1.0056, 1.0058, 1.0056, 1.0053, 1.0048, 1.0042, 1.0036, 1.0031, 1.0026, 1.0021, 1.0017, 1.0014, 1.0011, 1.0008, 1.0006, 1.0005, 1);
+  --ts-spring-snappy-duration: 460ms;
+  --ts-spring-smooth: linear(0, 0.0262, 0.0879, 0.1658, 0.2542, 0.3433, 0.4287, 0.5079, 0.5773, 0.6411, 0.6971, 0.7455, 0.7872, 0.8216, 0.8519, 0.8773, 0.8987, 0.9165, 0.9309, 0.9433, 0.9536, 0.962, 0.969, 0.9745, 0.9793, 0.9831, 0.9863, 0.9889, 0.9909, 0.9926, 0.994, 0.9952, 0.9961, 0.9968, 0.9974, 0.9979, 0.9983, 0.9986, 0.9989, 0.9991, 1);
+  --ts-spring-smooth-duration: 616ms;
+  --ts-spring-bouncy: linear(0, 0.0223, 0.0786, 0.1595, 0.2509, 0.3474, 0.4436, 0.5357, 0.6233, 0.6999, 0.7673, 0.8254, 0.8743, 0.9156, 0.9479, 0.9732, 0.9926, 1.0067, 1.0169, 1.0232, 1.0268, 1.0283, 1.0282, 1.0269, 1.0249, 1.0224, 1.0197, 1.017, 1.0142, 1.0117, 1.0094, 1.0074, 1.0056, 1.0041, 1.0029, 1.0018, 1.001, 1.0004, 1, 0.9996, 1);
+  --ts-spring-bouncy-duration: 704ms;
+  --ts-press-sink: 1px;
+  --ts-press-duration: 80ms;
+  --ts-settle-lift: 6px;
+  --ts-settle-scale: 1.015;
+}
+
+/* ---------- 颜色：浅色（默认） ---------- */
+:root {
+  color-scheme: light;
+  --ts-bg-canvas: #EFEBE4;
+  --ts-bg-surface: #FBF9F5;
+  --ts-bg-elevated: #FFFFFF;
+  --ts-bg-elevated-2: #FFFFFF;
+  --ts-bg-inverse: #1F1B16;
+  --ts-bg-scrim: rgb(31 27 22 / 0.36);
+  --ts-fill-default: rgb(31 27 22 / 0.06);
+  --ts-fill-control-off: #D9D3C8;
+  --ts-text-primary: #1F1B16;
+  --ts-text-secondary: #5E584E;
+  --ts-text-tertiary: #6B655C;
+  --ts-text-on-solid: #FFFFFF;
+  --ts-text-inverse: #F0ECE4;
+  --ts-border-subtle: rgb(31 27 22 / 0.08);
+  --ts-border-strong: rgb(31 27 22 / 0.45);
+  --ts-border-surface: transparent;
+  --ts-border-field: transparent;
+  --ts-edge-solid: rgb(0 0 0 / 0.22);
+  --ts-edge-soft: rgb(31 27 22 / 0.1);
+  --ts-sheen: rgb(255 255 255 / 0.16);
+  --ts-accent-solid: #0F6B63;
+  --ts-accent-control: #0F6B63;
+  --ts-accent-text: #0F6B63;
+  --ts-accent-subtle: rgb(15 107 99 / 0.1);
+  --ts-danger-solid: #B42318;
+  --ts-danger-text: #B42318;
+  --ts-danger-subtle: rgb(180 35 24 / 0.1);
+  --ts-success-solid: #3D6B1C;
+  --ts-success-text: #3D6B1C;
+  --ts-success-subtle: rgb(61 107 28 / 0.1);
+  --ts-warning-solid: #8A5600;
+  --ts-warning-text: #8A5600;
+  --ts-warning-subtle: rgb(138 86 0 / 0.1);
+  --ts-focus-glow: rgb(15 107 99 / 0.22);
+  --ts-focus-ring: #0F6B63;
+  --ts-selection: rgb(31 138 126 / 0.22);
+  --ts-state-hover: rgb(31 27 22 / 0.05);
+  --ts-state-pressed: rgb(31 27 22 / 0.09);
+  --ts-state-solid-hover: rgb(255 255 255 / 0.08);
+  --ts-state-solid-pressed: rgb(0 0 0 / 0.1);
+  --ts-shadow-color: #1F1B16;
+  --ts-pigment-cinnabar: #C4472D;
+  --ts-pigment-cinnabar-subtle: rgb(196 71 45 / 0.14);
+  --ts-pigment-cinnabar-text: #93301C;
+  --ts-pigment-ochre: #B7862B;
+  --ts-pigment-ochre-subtle: rgb(183 134 43 / 0.14);
+  --ts-pigment-ochre-text: #7A5512;
+  --ts-pigment-lapis: #2F4E9E;
+  --ts-pigment-lapis-subtle: rgb(47 78 158 / 0.14);
+  --ts-pigment-lapis-text: #243E80;
+  --ts-pigment-amethyst: #7B4C9C;
+  --ts-pigment-amethyst-subtle: rgb(123 76 156 / 0.14);
+  --ts-pigment-amethyst-text: #5E3778;
+  --ts-pigment-olive: #6A7A2B;
+  --ts-pigment-olive-subtle: rgb(106 122 43 / 0.14);
+  --ts-pigment-olive-text: #4D5A1A;
+  --ts-material-glass: rgb(251 249 245 / 0.72);
+  --ts-material-glass-thumb: rgb(255 255 255 / 0.62);
+  --ts-material-glass-rim: rgb(255 255 255 / 0.75);
+  --ts-shadow-1: 0 1px 2px rgb(31 27 22 / 0.05), 0 4px 14px rgb(31 27 22 / 0.05);
+  --ts-shadow-2: 0 2px 6px rgb(31 27 22 / 0.07), 0 14px 36px rgb(31 27 22 / 0.1);
+  --ts-shadow-3: 0 4px 12px rgb(31 27 22 / 0.09), 0 28px 72px rgb(31 27 22 / 0.16);
+}
+
+/* ---------- 颜色：深色（跟随系统，或 data-theme="dark"） ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ts-bg-canvas: #151310;
+    --ts-bg-surface: #1E1C18;
+    --ts-bg-elevated: #282521;
+    --ts-bg-elevated-2: #322F2A;
+    --ts-bg-inverse: #F0ECE4;
+    --ts-bg-scrim: rgb(0 0 0 / 0.6);
+    --ts-fill-default: rgb(240 236 228 / 0.08);
+    --ts-fill-control-off: #4A453D;
+    --ts-text-primary: #F0ECE4;
+    --ts-text-secondary: #ADA699;
+    --ts-text-tertiary: #9E978B;
+    --ts-text-on-solid: #FFFFFF;
+    --ts-text-inverse: #1F1B16;
+    --ts-border-subtle: rgb(240 236 228 / 0.08);
+    --ts-border-strong: rgb(240 236 228 / 0.45);
+    --ts-border-surface: rgb(240 236 228 / 0.06);
+    --ts-border-field: transparent;
+    --ts-edge-solid: rgb(0 0 0 / 0.32);
+    --ts-edge-soft: rgb(0 0 0 / 0.4);
+    --ts-sheen: rgb(255 255 255 / 0.1);
+    --ts-accent-solid: #0F6B63;
+    --ts-accent-control: #1F8A7E;
+    --ts-accent-text: #6CBDB1;
+    --ts-accent-subtle: rgb(31 138 126 / 0.2);
+    --ts-danger-solid: #B42318;
+    --ts-danger-text: #FF8A7A;
+    --ts-danger-subtle: rgb(180 35 24 / 0.22);
+    --ts-success-solid: #3D6B1C;
+    --ts-success-text: #9CCB6B;
+    --ts-success-subtle: rgb(61 107 28 / 0.22);
+    --ts-warning-solid: #8A5600;
+    --ts-warning-text: #E0A643;
+    --ts-warning-subtle: rgb(138 86 0 / 0.22);
+    --ts-focus-glow: rgb(31 138 126 / 0.38);
+    --ts-focus-ring: #6CBDB1;
+    --ts-selection: rgb(31 138 126 / 0.32);
+    --ts-state-hover: rgb(240 236 228 / 0.06);
+    --ts-state-pressed: rgb(240 236 228 / 0.1);
+    --ts-state-solid-hover: rgb(255 255 255 / 0.08);
+    --ts-state-solid-pressed: rgb(0 0 0 / 0.1);
+    --ts-shadow-color: #000000;
+    --ts-pigment-cinnabar: #C4472D;
+    --ts-pigment-cinnabar-subtle: rgb(196 71 45 / 0.26);
+    --ts-pigment-cinnabar-text: #F0A08C;
+    --ts-pigment-ochre: #B7862B;
+    --ts-pigment-ochre-subtle: rgb(183 134 43 / 0.26);
+    --ts-pigment-ochre-text: #E3B866;
+    --ts-pigment-lapis: #2F4E9E;
+    --ts-pigment-lapis-subtle: rgb(47 78 158 / 0.26);
+    --ts-pigment-lapis-text: #9DB2EC;
+    --ts-pigment-amethyst: #7B4C9C;
+    --ts-pigment-amethyst-subtle: rgb(123 76 156 / 0.26);
+    --ts-pigment-amethyst-text: #C9A6E2;
+    --ts-pigment-olive: #6A7A2B;
+    --ts-pigment-olive-subtle: rgb(106 122 43 / 0.26);
+    --ts-pigment-olive-text: #BFCB7A;
+    --ts-material-glass: rgb(30 28 24 / 0.72);
+    --ts-material-glass-thumb: rgb(30 28 24 / 0.5);
+    --ts-material-glass-rim: rgb(255 255 255 / 0.2);
+    --ts-shadow-1: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 14px rgb(0 0 0 / 0.4);
+    --ts-shadow-2: 0 2px 6px rgb(0 0 0 / 0.4), 0 14px 36px rgb(0 0 0 / 0.4);
+    --ts-shadow-3: 0 4px 12px rgb(0 0 0 / 0.4), 0 28px 72px rgb(0 0 0 / 0.4);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ts-bg-canvas: #151310;
+  --ts-bg-surface: #1E1C18;
+  --ts-bg-elevated: #282521;
+  --ts-bg-elevated-2: #322F2A;
+  --ts-bg-inverse: #F0ECE4;
+  --ts-bg-scrim: rgb(0 0 0 / 0.6);
+  --ts-fill-default: rgb(240 236 228 / 0.08);
+  --ts-fill-control-off: #4A453D;
+  --ts-text-primary: #F0ECE4;
+  --ts-text-secondary: #ADA699;
+  --ts-text-tertiary: #9E978B;
+  --ts-text-on-solid: #FFFFFF;
+  --ts-text-inverse: #1F1B16;
+  --ts-border-subtle: rgb(240 236 228 / 0.08);
+  --ts-border-strong: rgb(240 236 228 / 0.45);
+  --ts-border-surface: rgb(240 236 228 / 0.06);
+  --ts-border-field: transparent;
+  --ts-edge-solid: rgb(0 0 0 / 0.32);
+  --ts-edge-soft: rgb(0 0 0 / 0.4);
+  --ts-sheen: rgb(255 255 255 / 0.1);
+  --ts-accent-solid: #0F6B63;
+  --ts-accent-control: #1F8A7E;
+  --ts-accent-text: #6CBDB1;
+  --ts-accent-subtle: rgb(31 138 126 / 0.2);
+  --ts-danger-solid: #B42318;
+  --ts-danger-text: #FF8A7A;
+  --ts-danger-subtle: rgb(180 35 24 / 0.22);
+  --ts-success-solid: #3D6B1C;
+  --ts-success-text: #9CCB6B;
+  --ts-success-subtle: rgb(61 107 28 / 0.22);
+  --ts-warning-solid: #8A5600;
+  --ts-warning-text: #E0A643;
+  --ts-warning-subtle: rgb(138 86 0 / 0.22);
+  --ts-focus-glow: rgb(31 138 126 / 0.38);
+  --ts-focus-ring: #6CBDB1;
+  --ts-selection: rgb(31 138 126 / 0.32);
+  --ts-state-hover: rgb(240 236 228 / 0.06);
+  --ts-state-pressed: rgb(240 236 228 / 0.1);
+  --ts-state-solid-hover: rgb(255 255 255 / 0.08);
+  --ts-state-solid-pressed: rgb(0 0 0 / 0.1);
+  --ts-shadow-color: #000000;
+  --ts-pigment-cinnabar: #C4472D;
+  --ts-pigment-cinnabar-subtle: rgb(196 71 45 / 0.26);
+  --ts-pigment-cinnabar-text: #F0A08C;
+  --ts-pigment-ochre: #B7862B;
+  --ts-pigment-ochre-subtle: rgb(183 134 43 / 0.26);
+  --ts-pigment-ochre-text: #E3B866;
+  --ts-pigment-lapis: #2F4E9E;
+  --ts-pigment-lapis-subtle: rgb(47 78 158 / 0.26);
+  --ts-pigment-lapis-text: #9DB2EC;
+  --ts-pigment-amethyst: #7B4C9C;
+  --ts-pigment-amethyst-subtle: rgb(123 76 156 / 0.26);
+  --ts-pigment-amethyst-text: #C9A6E2;
+  --ts-pigment-olive: #6A7A2B;
+  --ts-pigment-olive-subtle: rgb(106 122 43 / 0.26);
+  --ts-pigment-olive-text: #BFCB7A;
+  --ts-material-glass: rgb(30 28 24 / 0.72);
+  --ts-material-glass-thumb: rgb(30 28 24 / 0.5);
+  --ts-material-glass-rim: rgb(255 255 255 / 0.2);
+  --ts-shadow-1: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 14px rgb(0 0 0 / 0.4);
+  --ts-shadow-2: 0 2px 6px rgb(0 0 0 / 0.4), 0 14px 36px rgb(0 0 0 / 0.4);
+  --ts-shadow-3: 0 4px 12px rgb(0 0 0 / 0.4), 0 28px 72px rgb(0 0 0 / 0.4);
+}
+
+/* ---------- 增强对比度（跟随系统，或 data-contrast="more"） ---------- */
+@media (prefers-contrast: more) {
+  :root:not([data-contrast="normal"]) {
+    --ts-fill-control-off: #7D776B;
+    --ts-text-secondary: #4A453D;
+    --ts-text-tertiary: #5E584E;
+    --ts-border-subtle: rgb(31 27 22 / 0.28);
+    --ts-border-surface: rgb(31 27 22 / 0.5);
+    --ts-border-field: rgb(31 27 22 / 0.5);
+  }
+  :root[data-theme="dark"]:not([data-contrast="normal"]) {
+    --ts-fill-control-off: #7D776B;
+    --ts-text-secondary: #BDB6A9;
+    --ts-text-tertiary: #ADA699;
+    --ts-border-subtle: rgb(240 236 228 / 0.3);
+    --ts-border-surface: rgb(240 236 228 / 0.5);
+    --ts-border-field: rgb(240 236 228 / 0.5);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-contrast="normal"]) {
+    --ts-fill-control-off: #7D776B;
+    --ts-text-secondary: #BDB6A9;
+    --ts-text-tertiary: #ADA699;
+    --ts-border-subtle: rgb(240 236 228 / 0.3);
+    --ts-border-surface: rgb(240 236 228 / 0.5);
+    --ts-border-field: rgb(240 236 228 / 0.5);
+  }
+}
+:root[data-contrast="more"] {
+  --ts-fill-control-off: #7D776B;
+  --ts-text-secondary: #4A453D;
+  --ts-text-tertiary: #5E584E;
+  --ts-border-subtle: rgb(31 27 22 / 0.28);
+  --ts-border-surface: rgb(31 27 22 / 0.5);
+  --ts-border-field: rgb(31 27 22 / 0.5);
+}
+:root[data-contrast="more"][data-theme="dark"] {
+  --ts-fill-control-off: #7D776B;
+  --ts-text-secondary: #BDB6A9;
+  --ts-text-tertiary: #ADA699;
+  --ts-border-subtle: rgb(240 236 228 / 0.3);
+  --ts-border-surface: rgb(240 236 228 / 0.5);
+  --ts-border-field: rgb(240 236 228 / 0.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-contrast="more"]:not([data-theme="light"]) {
+    --ts-fill-control-off: #7D776B;
+    --ts-text-secondary: #BDB6A9;
+    --ts-text-tertiary: #ADA699;
+    --ts-border-subtle: rgb(240 236 228 / 0.3);
+    --ts-border-surface: rgb(240 236 228 / 0.5);
+    --ts-border-field: rgb(240 236 228 / 0.5);
+  }
+}

@@ -1,0 +1,810 @@
+// TesseraUI v0.6.0 — 由 scripts/build.mjs 从 tokens/*.json 生成，请勿手改。
+export const tokens = {
+  "version": "0.6.0",
+  "color": {
+    "light": {
+      "bg.canvas": "#EFEBE4FF",
+      "bg.surface": "#FBF9F5FF",
+      "bg.elevated": "#FFFFFFFF",
+      "bg.elevated-2": "#FFFFFFFF",
+      "bg.inverse": "#1F1B16FF",
+      "bg.scrim": "#1F1B165C",
+      "fill.default": "#1F1B160F",
+      "fill.control-off": "#D9D3C8FF",
+      "text.primary": "#1F1B16FF",
+      "text.secondary": "#5E584EFF",
+      "text.tertiary": "#6B655CFF",
+      "text.on-solid": "#FFFFFFFF",
+      "text.inverse": "#F0ECE4FF",
+      "border.subtle": "#1F1B1614",
+      "border.strong": "#1F1B1673",
+      "border.surface": "#00000000",
+      "border.field": "#00000000",
+      "edge.solid": "#00000038",
+      "edge.soft": "#1F1B161A",
+      "sheen": "#FFFFFF29",
+      "accent.solid": "#0F6B63FF",
+      "accent.control": "#0F6B63FF",
+      "accent.text": "#0F6B63FF",
+      "accent.subtle": "#0F6B631A",
+      "danger.solid": "#B42318FF",
+      "danger.text": "#B42318FF",
+      "danger.subtle": "#B423181A",
+      "success.solid": "#3D6B1CFF",
+      "success.text": "#3D6B1CFF",
+      "success.subtle": "#3D6B1C1A",
+      "warning.solid": "#8A5600FF",
+      "warning.text": "#8A5600FF",
+      "warning.subtle": "#8A56001A",
+      "focus.glow": "#0F6B6338",
+      "focus.ring": "#0F6B63FF",
+      "selection": "#1F8A7E38",
+      "state.hover": "#1F1B160D",
+      "state.pressed": "#1F1B1617",
+      "state.solid-hover": "#FFFFFF14",
+      "state.solid-pressed": "#0000001A",
+      "shadow.color": "#1F1B16FF",
+      "pigment.cinnabar": "#C4472DFF",
+      "pigment.cinnabar-subtle": "#C4472D24",
+      "pigment.cinnabar-text": "#93301CFF",
+      "pigment.ochre": "#B7862BFF",
+      "pigment.ochre-subtle": "#B7862B24",
+      "pigment.ochre-text": "#7A5512FF",
+      "pigment.lapis": "#2F4E9EFF",
+      "pigment.lapis-subtle": "#2F4E9E24",
+      "pigment.lapis-text": "#243E80FF",
+      "pigment.amethyst": "#7B4C9CFF",
+      "pigment.amethyst-subtle": "#7B4C9C24",
+      "pigment.amethyst-text": "#5E3778FF",
+      "pigment.olive": "#6A7A2BFF",
+      "pigment.olive-subtle": "#6A7A2B24",
+      "pigment.olive-text": "#4D5A1AFF",
+      "material.glass": "#FBF9F5B8",
+      "material.glass-thumb": "#FFFFFF9E",
+      "material.glass-rim": "#FFFFFFBF"
+    },
+    "dark": {
+      "bg.canvas": "#151310FF",
+      "bg.surface": "#1E1C18FF",
+      "bg.elevated": "#282521FF",
+      "bg.elevated-2": "#322F2AFF",
+      "bg.inverse": "#F0ECE4FF",
+      "bg.scrim": "#00000099",
+      "fill.default": "#F0ECE414",
+      "fill.control-off": "#4A453DFF",
+      "text.primary": "#F0ECE4FF",
+      "text.secondary": "#ADA699FF",
+      "text.tertiary": "#9E978BFF",
+      "text.on-solid": "#FFFFFFFF",
+      "text.inverse": "#1F1B16FF",
+      "border.subtle": "#F0ECE414",
+      "border.strong": "#F0ECE473",
+      "border.surface": "#F0ECE40F",
+      "border.field": "#00000000",
+      "edge.solid": "#00000052",
+      "edge.soft": "#00000066",
+      "sheen": "#FFFFFF1A",
+      "accent.solid": "#0F6B63FF",
+      "accent.control": "#1F8A7EFF",
+      "accent.text": "#6CBDB1FF",
+      "accent.subtle": "#1F8A7E33",
+      "danger.solid": "#B42318FF",
+      "danger.text": "#FF8A7AFF",
+      "danger.subtle": "#B4231838",
+      "success.solid": "#3D6B1CFF",
+      "success.text": "#9CCB6BFF",
+      "success.subtle": "#3D6B1C38",
+      "warning.solid": "#8A5600FF",
+      "warning.text": "#E0A643FF",
+      "warning.subtle": "#8A560038",
+      "focus.glow": "#1F8A7E61",
+      "focus.ring": "#6CBDB1FF",
+      "selection": "#1F8A7E52",
+      "state.hover": "#F0ECE40F",
+      "state.pressed": "#F0ECE41A",
+      "state.solid-hover": "#FFFFFF14",
+      "state.solid-pressed": "#0000001A",
+      "shadow.color": "#000000FF",
+      "pigment.cinnabar": "#C4472DFF",
+      "pigment.cinnabar-subtle": "#C4472D42",
+      "pigment.cinnabar-text": "#F0A08CFF",
+      "pigment.ochre": "#B7862BFF",
+      "pigment.ochre-subtle": "#B7862B42",
+      "pigment.ochre-text": "#E3B866FF",
+      "pigment.lapis": "#2F4E9EFF",
+      "pigment.lapis-subtle": "#2F4E9E42",
+      "pigment.lapis-text": "#9DB2ECFF",
+      "pigment.amethyst": "#7B4C9CFF",
+      "pigment.amethyst-subtle": "#7B4C9C42",
+      "pigment.amethyst-text": "#C9A6E2FF",
+      "pigment.olive": "#6A7A2BFF",
+      "pigment.olive-subtle": "#6A7A2B42",
+      "pigment.olive-text": "#BFCB7AFF",
+      "material.glass": "#1E1C18B8",
+      "material.glass-thumb": "#1E1C1880",
+      "material.glass-rim": "#FFFFFF33"
+    },
+    "light-hc": {
+      "bg.canvas": "#EFEBE4FF",
+      "bg.surface": "#FBF9F5FF",
+      "bg.elevated": "#FFFFFFFF",
+      "bg.elevated-2": "#FFFFFFFF",
+      "bg.inverse": "#1F1B16FF",
+      "bg.scrim": "#1F1B165C",
+      "fill.default": "#1F1B160F",
+      "fill.control-off": "#7D776BFF",
+      "text.primary": "#1F1B16FF",
+      "text.secondary": "#4A453DFF",
+      "text.tertiary": "#5E584EFF",
+      "text.on-solid": "#FFFFFFFF",
+      "text.inverse": "#F0ECE4FF",
+      "border.subtle": "#1F1B1647",
+      "border.strong": "#1F1B1673",
+      "border.surface": "#1F1B1680",
+      "border.field": "#1F1B1680",
+      "edge.solid": "#00000038",
+      "edge.soft": "#1F1B161A",
+      "sheen": "#FFFFFF29",
+      "accent.solid": "#0F6B63FF",
+      "accent.control": "#0F6B63FF",
+      "accent.text": "#0F6B63FF",
+      "accent.subtle": "#0F6B631A",
+      "danger.solid": "#B42318FF",
+      "danger.text": "#B42318FF",
+      "danger.subtle": "#B423181A",
+      "success.solid": "#3D6B1CFF",
+      "success.text": "#3D6B1CFF",
+      "success.subtle": "#3D6B1C1A",
+      "warning.solid": "#8A5600FF",
+      "warning.text": "#8A5600FF",
+      "warning.subtle": "#8A56001A",
+      "focus.glow": "#0F6B6338",
+      "focus.ring": "#0F6B63FF",
+      "selection": "#1F8A7E38",
+      "state.hover": "#1F1B160D",
+      "state.pressed": "#1F1B1617",
+      "state.solid-hover": "#FFFFFF14",
+      "state.solid-pressed": "#0000001A",
+      "shadow.color": "#1F1B16FF",
+      "pigment.cinnabar": "#C4472DFF",
+      "pigment.cinnabar-subtle": "#C4472D24",
+      "pigment.cinnabar-text": "#93301CFF",
+      "pigment.ochre": "#B7862BFF",
+      "pigment.ochre-subtle": "#B7862B24",
+      "pigment.ochre-text": "#7A5512FF",
+      "pigment.lapis": "#2F4E9EFF",
+      "pigment.lapis-subtle": "#2F4E9E24",
+      "pigment.lapis-text": "#243E80FF",
+      "pigment.amethyst": "#7B4C9CFF",
+      "pigment.amethyst-subtle": "#7B4C9C24",
+      "pigment.amethyst-text": "#5E3778FF",
+      "pigment.olive": "#6A7A2BFF",
+      "pigment.olive-subtle": "#6A7A2B24",
+      "pigment.olive-text": "#4D5A1AFF",
+      "material.glass": "#FBF9F5B8",
+      "material.glass-thumb": "#FFFFFF9E",
+      "material.glass-rim": "#FFFFFFBF"
+    },
+    "dark-hc": {
+      "bg.canvas": "#151310FF",
+      "bg.surface": "#1E1C18FF",
+      "bg.elevated": "#282521FF",
+      "bg.elevated-2": "#322F2AFF",
+      "bg.inverse": "#F0ECE4FF",
+      "bg.scrim": "#00000099",
+      "fill.default": "#F0ECE414",
+      "fill.control-off": "#7D776BFF",
+      "text.primary": "#F0ECE4FF",
+      "text.secondary": "#BDB6A9FF",
+      "text.tertiary": "#ADA699FF",
+      "text.on-solid": "#FFFFFFFF",
+      "text.inverse": "#1F1B16FF",
+      "border.subtle": "#F0ECE44D",
+      "border.strong": "#F0ECE473",
+      "border.surface": "#F0ECE480",
+      "border.field": "#F0ECE480",
+      "edge.solid": "#00000052",
+      "edge.soft": "#00000066",
+      "sheen": "#FFFFFF1A",
+      "accent.solid": "#0F6B63FF",
+      "accent.control": "#1F8A7EFF",
+      "accent.text": "#6CBDB1FF",
+      "accent.subtle": "#1F8A7E33",
+      "danger.solid": "#B42318FF",
+      "danger.text": "#FF8A7AFF",
+      "danger.subtle": "#B4231838",
+      "success.solid": "#3D6B1CFF",
+      "success.text": "#9CCB6BFF",
+      "success.subtle": "#3D6B1C38",
+      "warning.solid": "#8A5600FF",
+      "warning.text": "#E0A643FF",
+      "warning.subtle": "#8A560038",
+      "focus.glow": "#1F8A7E61",
+      "focus.ring": "#6CBDB1FF",
+      "selection": "#1F8A7E52",
+      "state.hover": "#F0ECE40F",
+      "state.pressed": "#F0ECE41A",
+      "state.solid-hover": "#FFFFFF14",
+      "state.solid-pressed": "#0000001A",
+      "shadow.color": "#000000FF",
+      "pigment.cinnabar": "#C4472DFF",
+      "pigment.cinnabar-subtle": "#C4472D42",
+      "pigment.cinnabar-text": "#F0A08CFF",
+      "pigment.ochre": "#B7862BFF",
+      "pigment.ochre-subtle": "#B7862B42",
+      "pigment.ochre-text": "#E3B866FF",
+      "pigment.lapis": "#2F4E9EFF",
+      "pigment.lapis-subtle": "#2F4E9E42",
+      "pigment.lapis-text": "#9DB2ECFF",
+      "pigment.amethyst": "#7B4C9CFF",
+      "pigment.amethyst-subtle": "#7B4C9C42",
+      "pigment.amethyst-text": "#C9A6E2FF",
+      "pigment.olive": "#6A7A2BFF",
+      "pigment.olive-subtle": "#6A7A2B42",
+      "pigment.olive-text": "#BFCB7AFF",
+      "material.glass": "#1E1C18B8",
+      "material.glass-thumb": "#1E1C1880",
+      "material.glass-rim": "#FFFFFF33"
+    }
+  },
+  "shadow": {
+    "light": {
+      "1": [
+        {
+          "y": 1,
+          "blur": 2,
+          "alpha": 0.05
+        },
+        {
+          "y": 4,
+          "blur": 14,
+          "alpha": 0.05
+        }
+      ],
+      "2": [
+        {
+          "y": 2,
+          "blur": 6,
+          "alpha": 0.07
+        },
+        {
+          "y": 14,
+          "blur": 36,
+          "alpha": 0.1
+        }
+      ],
+      "3": [
+        {
+          "y": 4,
+          "blur": 12,
+          "alpha": 0.09
+        },
+        {
+          "y": 28,
+          "blur": 72,
+          "alpha": 0.16
+        }
+      ]
+    },
+    "dark": {
+      "1": [
+        {
+          "y": 1,
+          "blur": 2,
+          "alpha": 0.4
+        },
+        {
+          "y": 4,
+          "blur": 14,
+          "alpha": 0.4
+        }
+      ],
+      "2": [
+        {
+          "y": 2,
+          "blur": 6,
+          "alpha": 0.4
+        },
+        {
+          "y": 14,
+          "blur": 36,
+          "alpha": 0.4
+        }
+      ],
+      "3": [
+        {
+          "y": 4,
+          "blur": 12,
+          "alpha": 0.4
+        },
+        {
+          "y": 28,
+          "blur": 72,
+          "alpha": 0.4
+        }
+      ]
+    },
+    "light-hc": {
+      "1": [
+        {
+          "y": 1,
+          "blur": 2,
+          "alpha": 0.05
+        },
+        {
+          "y": 4,
+          "blur": 14,
+          "alpha": 0.05
+        }
+      ],
+      "2": [
+        {
+          "y": 2,
+          "blur": 6,
+          "alpha": 0.07
+        },
+        {
+          "y": 14,
+          "blur": 36,
+          "alpha": 0.1
+        }
+      ],
+      "3": [
+        {
+          "y": 4,
+          "blur": 12,
+          "alpha": 0.09
+        },
+        {
+          "y": 28,
+          "blur": 72,
+          "alpha": 0.16
+        }
+      ]
+    },
+    "dark-hc": {
+      "1": [
+        {
+          "y": 1,
+          "blur": 2,
+          "alpha": 0.4
+        },
+        {
+          "y": 4,
+          "blur": 14,
+          "alpha": 0.4
+        }
+      ],
+      "2": [
+        {
+          "y": 2,
+          "blur": 6,
+          "alpha": 0.4
+        },
+        {
+          "y": 14,
+          "blur": 36,
+          "alpha": 0.4
+        }
+      ],
+      "3": [
+        {
+          "y": 4,
+          "blur": 12,
+          "alpha": 0.4
+        },
+        {
+          "y": 28,
+          "blur": 72,
+          "alpha": 0.4
+        }
+      ]
+    }
+  },
+  "spring": {
+    "snappy": {
+      "duration": 0.3,
+      "bounce": 0.15,
+      "mass": 1,
+      "stiffness": 438.6,
+      "damping": 35.6,
+      "dampingRatio": 0.85,
+      "default": false
+    },
+    "smooth": {
+      "duration": 0.4,
+      "bounce": 0,
+      "mass": 1,
+      "stiffness": 246.7,
+      "damping": 31.4,
+      "dampingRatio": 1,
+      "default": true
+    },
+    "bouncy": {
+      "duration": 0.5,
+      "bounce": 0.25,
+      "mass": 1,
+      "stiffness": 157.9,
+      "damping": 18.8,
+      "dampingRatio": 0.75,
+      "default": false
+    }
+  },
+  "foundation": {
+    "$description": "非颜色基础 token。单位：长度为 px（iOS pt / Android dp / Windows epx 按 1:1 换算），时间为 ms。",
+    "font": {
+      "family": {
+        "display": [
+          "Fraunces"
+        ],
+        "latin": [
+          "Instrument Sans"
+        ],
+        "cjkSerif": {
+          "apple": [
+            "Songti SC"
+          ],
+          "android": [
+            "Noto Serif CJK SC"
+          ],
+          "windows": [
+            "Source Han Serif SC",
+            "Microsoft YaHei UI"
+          ],
+          "web": [
+            "Noto Serif SC",
+            "Source Han Serif SC",
+            "Songti SC",
+            "STSong"
+          ]
+        },
+        "cjk": {
+          "apple": [
+            "PingFang SC"
+          ],
+          "android": [
+            "Noto Sans CJK SC"
+          ],
+          "windows": [
+            "Microsoft YaHei UI"
+          ],
+          "web": [
+            "PingFang SC",
+            "Source Han Sans SC",
+            "Noto Sans CJK SC",
+            "Microsoft YaHei UI",
+            "Microsoft YaHei"
+          ]
+        },
+        "fallback": {
+          "apple": "system-ui",
+          "android": "sans-serif",
+          "windows": "Segoe UI Variable",
+          "web": [
+            "system-ui",
+            "-apple-system",
+            "Segoe UI Variable",
+            "Segoe UI",
+            "Roboto",
+            "sans-serif"
+          ]
+        },
+        "displayFallback": {
+          "web": [
+            "Georgia",
+            "serif"
+          ]
+        },
+        "mono": [
+          "JetBrains Mono",
+          "SF Mono",
+          "Cascadia Code",
+          "Menlo",
+          "Consolas",
+          "monospace"
+        ]
+      },
+      "displayAxes": {
+        "SOFT": 100,
+        "WONK": 0,
+        "$description": "Fraunces 的可变轴：SOFT 100 把衬线磨圆"
+      },
+      "weight": {
+        "regular": 400,
+        "semibold": 600
+      },
+      "style": {
+        "display": {
+          "size": 44,
+          "lineHeight": 52,
+          "weight": "semibold",
+          "family": "display",
+          "tracking": -0.02
+        },
+        "title-1": {
+          "size": 32,
+          "lineHeight": 40,
+          "weight": "semibold",
+          "family": "display",
+          "tracking": -0.015
+        },
+        "title-2": {
+          "size": 24,
+          "lineHeight": 32,
+          "weight": "semibold",
+          "family": "display",
+          "tracking": -0.01
+        },
+        "title-3": {
+          "size": 19,
+          "lineHeight": 26,
+          "weight": "semibold",
+          "family": "display",
+          "tracking": 0
+        },
+        "body": {
+          "size": 16,
+          "lineHeight": 26,
+          "weight": "regular",
+          "family": "text",
+          "tracking": 0
+        },
+        "body-sm": {
+          "size": 14,
+          "lineHeight": 22,
+          "weight": "regular",
+          "family": "text",
+          "tracking": 0
+        },
+        "label": {
+          "size": 14,
+          "lineHeight": 20,
+          "weight": "semibold",
+          "family": "text",
+          "tracking": 0
+        },
+        "caption": {
+          "size": 12,
+          "lineHeight": 18,
+          "weight": "regular",
+          "family": "text",
+          "tracking": 0
+        },
+        "overline": {
+          "size": 11,
+          "lineHeight": 16,
+          "weight": "semibold",
+          "family": "text",
+          "tracking": 0.12
+        }
+      },
+      "readingLineHeight": 1.75
+    },
+    "space": {
+      "0": 0,
+      "1": 4,
+      "2": 8,
+      "3": 12,
+      "4": 16,
+      "5": 20,
+      "6": 24,
+      "8": 32,
+      "10": 40,
+      "12": 48,
+      "16": 64
+    },
+    "size": {
+      "sm": 32,
+      "md": 40,
+      "lg": 48,
+      "touch-min": 44
+    },
+    "radius": {
+      "grout": 6,
+      "sm": 8,
+      "md": 14,
+      "lg": 18,
+      "xl": 24,
+      "2xl": 32,
+      "full": 9999
+    },
+    "border": {
+      "width": 1
+    },
+    "focus": {
+      "ringWidth": 2,
+      "ringOffset": 2,
+      "glowWidth": 3
+    },
+    "opacity": {
+      "disabled": 0.4
+    },
+    "shadow": {
+      "1": [
+        {
+          "y": 1,
+          "blur": 2,
+          "alpha": 0.05
+        },
+        {
+          "y": 4,
+          "blur": 14,
+          "alpha": 0.05
+        }
+      ],
+      "2": [
+        {
+          "y": 2,
+          "blur": 6,
+          "alpha": 0.07
+        },
+        {
+          "y": 14,
+          "blur": 36,
+          "alpha": 0.1
+        }
+      ],
+      "3": [
+        {
+          "y": 4,
+          "blur": 12,
+          "alpha": 0.09
+        },
+        {
+          "y": 28,
+          "blur": 72,
+          "alpha": 0.16
+        }
+      ],
+      "$darkAlpha": 0.4,
+      "$color": "shadow.color"
+    },
+    "z": {
+      "sticky": 100,
+      "overlay": 200,
+      "modal": 300,
+      "popover": 400,
+      "toast": 500,
+      "tooltip": 600
+    },
+    "breakpoint": {
+      "phone": {
+        "max": 639,
+        "columns": 4,
+        "gutter": 16,
+        "margin": 16
+      },
+      "tablet": {
+        "min": 640,
+        "max": 1024,
+        "columns": 8,
+        "gutter": 24,
+        "margin": 32
+      },
+      "desktop": {
+        "min": 1025,
+        "columns": 12,
+        "gutter": 24,
+        "maxContent": 1200
+      }
+    },
+    "tile": {
+      "grout": 3,
+      "edge": 2,
+      "$description": "grout：成组的砖之间的缝宽；edge：实色砖底部的砖厚"
+    },
+    "material": {
+      "glass": {
+        "blur": 20,
+        "saturation": 1.8,
+        "default": false,
+        "$description": "毛玻璃是可选效果，默认关闭"
+      }
+    },
+    "shape": {
+      "$description": "外观。tile（拼贴，默认）：圆角方砖，成组时留砖缝；round（圆融）：胶囊与大圆角，成组控件合成一整块，没有砖缝和分割线；flow（流韵）：以圆融为基础，圆角介于方砖与胶囊之间，加入水波、涟漪、液面张力等流体动效与触感反馈，只在性能较好的设备上启用",
+      "default": "tile",
+      "round": {
+        "pill": 9999,
+        "card": 28,
+        "panel": 36,
+        "row": 22,
+        "menu": 24,
+        "gap": 8,
+        "groupGap": 0,
+        "pressScale": 0.97,
+        "$description": "pill：按钮、输入框、开关等胶囊；card：卡片、列表、表格外框；panel：对话框、抽屉；row：列表行、表格圆角；menu：菜单、下拉、气泡；gap：对话框按钮等独立胶囊的间距；groupGap：成组控件之间的缝（0 = 合成一整块）；pressScale：按下时缩放"
+      },
+      "flow": {
+        "control": 17,
+        "card": 26,
+        "panel": 34,
+        "row": 18,
+        "menu": 22,
+        "gap": 8,
+        "groupGap": 0,
+        "pressScale": 0.96,
+        "rippleDuration": 760,
+        "splashDuration": 640,
+        "minCores": 6,
+        "minMemoryGB": 4,
+        "$description": "control：按钮、输入框等单行控件静止时的圆角（介于方砖与胶囊之间），按下时变成胶囊；card / panel / row / menu 同圆融含义；rippleDuration：水波时长；splashDuration：开关涟漪时长；minCores / minMemoryGB：启用流韵的设备最低要求"
+      }
+    }
+  },
+  "motion": {
+    "$description": "动效 token。弹簧以“时长 + 回弹”为准，刚度和阻尼由构建脚本按 刚度 = (2π ÷ 时长)²、阻尼 = 4π × (1 − 回弹) ÷ 时长 算出（质量 1）。",
+    "spring": {
+      "snappy": {
+        "duration": 300,
+        "bounce": 0.15
+      },
+      "smooth": {
+        "duration": 400,
+        "bounce": 0,
+        "default": true
+      },
+      "bouncy": {
+        "duration": 500,
+        "bounce": 0.25
+      }
+    },
+    "duration": {
+      "instant": 100,
+      "fast": 150,
+      "normal": 250,
+      "slow": 350
+    },
+    "ease": {
+      "standard": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "enter": [
+        0.05,
+        0.7,
+        0.1,
+        1
+      ],
+      "exit": [
+        0.3,
+        0,
+        0.8,
+        0.15
+      ],
+      "linear": "linear"
+    },
+    "press": {
+      "sink": 1,
+      "duration": 80,
+      "$description": "按下：砖往下沉 1px、砖厚变薄；松手用 snappy 弹回"
+    },
+    "gesture": {
+      "flingVelocity": 500,
+      "rubberBand": 0.55
+    },
+    "stagger": {
+      "step": 30,
+      "maxItems": 8,
+      "$description": "铺砖：网格按对角线顺序依次出现"
+    },
+    "toast": {
+      "duration": 3000,
+      "durationWithAction": 5000
+    },
+    "skeleton": {
+      "period": 1500
+    },
+    "reducedMotion": {
+      "duration": 150
+    },
+    "settle": {
+      "lift": 6,
+      "scale": 1.015,
+      "$description": "落砖：进场时从上方 6px、放大 1.5% 落到位，smooth"
+    }
+  }
+};
+export default tokens;

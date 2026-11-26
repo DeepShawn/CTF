@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CTFKit · CTF 工具包</title>
+<meta name="description" content="面向初学者的 CTF 工具包：编码、古典密码、哈希等 40 多个工具，附原理讲解与可运行的 Python 代码。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..600,0..100,0..1&family=Instrument+Sans:wght@400;600&family=Noto+Serif+SC:wght@600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="tessera/tessera.css">
+<link rel="stylesheet" href="app.css">
+<script>
+  // 在样式加载前恢复外观设置，避免闪烁
+  try {
+    const s = JSON.parse(localStorage.getItem('ctfkit:appearance') || '{}');
+    if (s.theme && s.theme !== 'system') document.documentElement.dataset.theme = s.theme;
+    if (s.shape && s.shape !== 'tile') document.documentElement.dataset.shape = s.shape === 'flow' ? 'round' : s.shape;
+  } catch (e) {}
+</script>
+</head>
+<body>
+<div class="shell">
+  <aside class="ts-sidebar" id="sidebar" aria-label="工具目录">
+    <div class="ts-sidebar-head">
+      <button class="ts-icon-button ts-pressable ts-state" data-sidebar-toggle aria-label="折叠目录"><i data-icon="sidebar"></i></button>
+      <a class="brand ts-sidebar-label" href="#/"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>CTFKit</a>
+    </div>
+    <div class="sidebar-search ts-sidebar-label">
+      <div class="ts-input ts-sm"><i data-icon="search"></i><input type="search" id="side-search" placeholder="搜索工具" aria-label="搜索工具"></div>
+    </div>
+    <nav id="side-nav"></nav>
+  </aside>
+
+  <div class="main-col">
+    <header class="ts-navbar topbar">
+      <button class="ts-icon-button ts-pressable ts-state mobile-only" id="back" aria-label="返回" hidden><i data-icon="arrow-left"></i></button>
+      <a class="brand mobile-only" href="#/" id="mobile-brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>CTFKit</a>
+      <span class="ts-navbar-title" id="page-title"></span>
+      <span class="ts-spacer"></span>
+      <span class="py-status" id="py-status" data-tooltip="Python 运行环境状态"><span class="ts-spinner ts-sm"></span><span class="py-status-text">Python 加载中</span></span>
+      <button class="ts-icon-button ts-pressable ts-state" id="open-settings" aria-label="外观设置"><i data-icon="settings"></i></button>
+    </header>
+    <main id="view" class="ts-container" tabindex="-1"></main>
+    <footer class="foot ts-container">
+      <span>CTFKit <span id="version"></span> · <a class="ts-link" href="https://github.com/DeepShawn/CTF">源代码</a> · MIT 许可协议 · 界面：<a class="ts-link" href="https://github.com/DeepShawn/TesseraUI">TesseraUI</a></span>
+      <span>仅用于学习、CTF 比赛与已获授权的安全测试</span>
+    </footer>
+  </div>
+</div>
+
+<dialog class="ts-dialog" id="settings" aria-labelledby="settings-title">
+  <h2 class="ts-dialog-title" id="settings-title">外观</h2>
+  <div class="settings-body">
+    <div class="ts-field"><span class="ts-field-label">主题</span>
+      <div class="ts-segmented" role="radiogroup" aria-label="主题" id="set-theme">
+        <label><input type="radio" name="theme" value="system" checked><span>跟随系统</span></label>
+        <label><input type="radio" name="theme" value="light"><span>浅色</span></label>
+        <label><input type="radio" name="theme" value="dark"><span>深色</span></label>
+      </div></div>
+    <div class="ts-field"><span class="ts-field-label">外观</span>
+      <div class="ts-segmented" role="radiogroup" aria-label="外观" id="set-shape">
+        <label><input type="radio" name="shape" value="tile" checked><span>拼贴</span></label>
+        <label><input type="radio" name="shape" value="round"><span>圆融</span></label>
+        <label><input type="radio" name="shape" value="flow"><span>流韵</span></label>
+      </div>
+      <div class="ts-field-help">流韵外观只在性能较好的设备上启用，否则自动改用圆融</div></div>
+    <label class="ts-check"><input type="checkbox" role="switch" class="ts-switch" id="set-contrast">增强对比度</label>
+  </div>
+  <div class="ts-dialog-actions">
+    <button class="ts-button ts-primary ts-pressable ts-state" data-close>完成</button>
+  </div>
+</dialog>
+
+<noscript><p style="padding:24px">CTFKit 需要启用 JavaScript。</p></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

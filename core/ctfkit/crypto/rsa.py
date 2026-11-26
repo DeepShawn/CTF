@@ -4,7 +4,7 @@ import base64
 import math
 import re
 
-from ..registry import ToolError, field, text_input, tool
+from ..registry import ToolError, text_input, tool
 from ..util import fields, i2b, parse_int, show
 from .nt import convergents, continued_fraction, crt, factor, fermat, invert, iroot, is_prime, phi_from_factors, short
 

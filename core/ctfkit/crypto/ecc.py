@@ -3,7 +3,7 @@
 import math
 from collections import Counter
 
-from ..registry import ToolError, field, text_input, tool
+from ..registry import ToolError, field, tool
 from ..util import fields, parse_int, show, i2b
 from .nt import crt, factor, invert, is_prime
 

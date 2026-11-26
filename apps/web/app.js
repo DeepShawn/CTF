@@ -215,6 +215,11 @@ function fieldHtml(f, prefix) {
     case 'switch':
       body = `<label class="ts-check"><input type="checkbox" role="switch" class="ts-switch" data-field="${f.id}" data-kind="switch"${d ? ' checked' : ''}>${esc(f.label)}</label>`;
       break;
+    case 'file':
+      body = `<span class="ts-field-label">${esc(f.label)}</span>`
+        + `<div class="ts-upload" data-field="${f.id}" data-kind="file" tabindex="0" role="button"><i data-icon="upload"></i>`
+        + `<span class="ts-label">拖入文件，或点击选择</span><span class="ts-caption ts-secondary file-name">尚未选择文件</span></div>`;
+      break;
     default:
       body = `${label}<div class="ts-input"><input id="${id}" data-field="${f.id}" value="${esc(String(d))}"></div>`;
   }
@@ -222,16 +227,27 @@ function fieldHtml(f, prefix) {
   return `<div class="ts-field field-${f.type}" data-wrap="${f.id}"${vw}>${body}${help}</div>`;
 }
 
+// 文件上传后，字节以 base64 存在元素上，运行时作为 {$b64: ...} 传给 Python
+const fileData = new WeakMap();
+
 function readParams(form) {
   const p = {};
   form.querySelectorAll('[data-field]').forEach((el) => {
     const k = el.dataset.field;
-    if (el.classList.contains('ts-segmented')) p[k] = el.querySelector('input:checked')?.value;
+    if (el.dataset.kind === 'file') p[k] = fileData.get(el) ? { $b64: fileData.get(el) } : '';
+    else if (el.classList.contains('ts-segmented')) p[k] = el.querySelector('input:checked')?.value;
     else if (el.dataset.kind === 'switch') p[k] = el.checked;
     else if (el.dataset.kind === 'number') p[k] = Number(el.value);
     else p[k] = el.value;
   });
   return p;
+}
+
+function bytesToBase64(bytes) {
+  let bin = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  return btoa(bin);
 }
 
 function writeParams(form, params) {
@@ -267,14 +283,29 @@ function outputHtml(o) {
       + `<tbody>${o.rows.map((r) => `<tr>${r.map((c, i) => `<td class="${num[i] ? 'ts-num' : 'mono selectable'}">${esc(String(c))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
       + `<p class="ts-caption ts-secondary">共 ${o.rows.length} 行</p>`;
   }
+  if (o.type === 'code') {
+    return `<div class="ts-code output-text" data-lang="${esc(o.lang || '')}" data-lines><pre><code>${esc(o.value)}</code></pre></div>`;
+  }
+  if (o.type === 'image') {
+    const cap = o.caption ? `<figcaption class="ts-caption ts-secondary">${esc(o.caption)}</figcaption>` : '';
+    return `<figure class="output-image"><img alt="${esc(o.caption || '结果图片')}" data-viewer="out" src="data:${o.mime};base64,${o.data}">${cap}</figure>`;
+  }
+  if (o.type === 'file') {
+    const url = `data:${o.mime};base64,${o.data}`;
+    const cap = o.caption ? `<span class="ts-caption ts-secondary">${esc(o.caption)}</span>` : '';
+    return `<div class="output-file"><i data-icon="file"></i><span class="ts-grow"><span class="ts-label">${esc(o.name)}</span><span class="ts-caption ts-secondary">${o.size} 字节</span>${cap}</span>`
+      + `<a class="ts-button ts-sm ts-pressable ts-state" href="${url}" download="${esc(o.name)}"><i data-icon="download"></i>下载</a></div>`;
+  }
   if (o.type === 'group') return o.items.map(outputHtml).join('');
   return `<pre>${esc(JSON.stringify(o))}</pre>`;
 }
 
 function outputText(o) {
-  if (o.type === 'text') return o.value;
+  if (o.type === 'text' || o.type === 'code') return o.value;
   if (o.type === 'fields') return o.items.map(([k, v]) => `${k}: ${v}`).join('\n');
   if (o.type === 'table') return [o.columns, ...o.rows].map((r) => r.join('\t')).join('\n');
+  if (o.type === 'image') return o.caption || '[图片]';
+  if (o.type === 'file') return `[文件 ${o.name}，${o.size} 字节]`;
   if (o.type === 'group') return o.items.map(outputText).join('\n\n');
   return '';
 }
@@ -382,6 +413,18 @@ function renderTool(id) {
   }
 
   if (t.live) form.querySelectorAll('textarea, input:not([type=radio]):not([type=checkbox])').forEach((el) => Tessera.onCommittedInput(el, schedule));
+  // 文件上传：读入字节存为 base64，选好后自动运行
+  form.querySelectorAll('[data-kind="file"]').forEach((el) => {
+    el.addEventListener('files', async (e) => {
+      const file = e.detail.files[0];
+      if (!file) return;
+      if (file.size > 60 * 1024 * 1024) { Tessera.toast('文件超过 60 MB，请在电脑上用 Docker 环境处理', { type: 'warning' }); return; }
+      const nameEl = el.querySelector('.file-name');
+      if (nameEl) nameEl.textContent = `${file.name}（${file.size} 字节）`;
+      fileData.set(el, bytesToBase64(new Uint8Array(await file.arrayBuffer())));
+      if (form.querySelectorAll('[data-kind="file"]').length === 1 || [...form.querySelectorAll('[data-kind="file"]')].every((f) => fileData.get(f))) run();
+    });
+  });
   $('#run').addEventListener('click', run);
   form.addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); run(); } });
   $('#clear').addEventListener('click', () => {

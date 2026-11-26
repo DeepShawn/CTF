@@ -3,4 +3,6 @@
 from .encoding import base, legacy, morse, esolang, text, magic  # noqa: F401
 from .crypto import caesar, railfence, substitution, vigenere, matrix, hashes  # noqa: F401
 from .crypto import nt, rsa, symmetric, hashext, ecc  # noqa: F401
+from .forensics import files, archive, pcap  # noqa: F401
+from .stego import image as stego_image, text as stego_text  # noqa: F401
 from .misc import py2check, flagsearch  # noqa: F401

@@ -360,8 +360,8 @@ docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:latest
 | **v0.2** | Web 版 | TesseraUI Web + Pyodide（Web Worker）；五个主页面；由描述文件生成工具页；PWA 离线；部署到 GitHub Pages | 3 周 |
 | **v0.3** | Android 版 | Compose + TesseraUI + Chaquopy；手机布局；与 Web 共用工具描述文件 | 3～4 周 |
 | **v0.4** | iOS 版 | SwiftUI + TesseraUI + CPython 3.13；手机布局；TestFlight 测试 | 3～4 周 |
-| **v0.5** | 杂项、取证与隐写 | 教材第 1 章其余部分与第 2 章：流量、日志、取证、压缩包、图像 / 音频 / 文本隐写、二维码 | 4 周 |
-| **v0.6** | 现代密码学与 Web | 第 3 章对称、非对称、哈希扩展攻击；第 4 章速查与本地工具；本地运行器 | 4 周 |
+| **v0.5** 🔶 | 杂项、取证与隐写 | 教材第 1 章其余部分与第 2 章：流量、日志、取证、压缩包、图像 / 音频 / 文本隐写、二维码 | 4 周 |
+| **v0.6** 🔶 | 现代密码学与 Web | 第 3 章对称、非对称、哈希扩展攻击；第 4 章速查与本地工具；本地运行器 | 4 周 |
 | **v0.7** | 逆向、PWN 与工控 | 第 5～8 章辅助工具；Docker 中的多版本 glibc；平板布局（依赖 TesseraUI v0.7.0） | 4 周 |
 | **v0.8** | 学习内容 | 全部章节的原理讲解与学习路径；Python 2 / 3 差异专题；“脚本”页模板库 | 3 周 |
 | **v0.9** | 例题库 | 每章至少 5 道原创例题与题解；离线验证 flag（见 range.md） | 3 周 |

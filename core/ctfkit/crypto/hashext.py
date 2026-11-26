@@ -10,7 +10,7 @@ import hashlib
 import math
 import struct
 
-from ..registry import ToolError, field, text_input, tool
+from ..registry import ToolError, field, tool
 from ..util import DATA_FORMATS, fields, to_bytes
 
 M32 = 0xFFFFFFFF

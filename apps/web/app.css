@@ -86,3 +86,13 @@ main { flex: 1; width: 100%; box-sizing: border-box; padding-top: var(--ts-space
 @media (min-width: 901px) { .shell > .ts-sidebar { display: flex; flex-direction: column; } }
 #side-nav { flex: 1; min-height: 0; overflow-y: auto; padding-bottom: var(--ts-space-6); display: flex; flex-direction: column; }
 .topbar .ts-navbar-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 文件上传与文件 / 图片输出 */
+.ts-upload[data-kind="file"] { width: 100%; box-sizing: border-box; }
+.output-image { margin: 0; display: grid; gap: var(--ts-space-2); justify-items: start; }
+.output-image img { max-width: 100%; border-radius: var(--ts-radius-md); image-rendering: pixelated; background:
+  repeating-conic-gradient(var(--ts-fill-default) 0% 25%, transparent 0% 50%) 0 / 16px 16px; }
+.output-file { display: flex; align-items: center; gap: var(--ts-space-3); padding: var(--ts-space-3);
+  background: var(--ts-fill-default); border-radius: var(--ts-radius-md); }
+.output-file .ts-grow { display: grid; min-width: 0; }
+.output-file .ts-label { word-break: break-all; }

@@ -174,7 +174,7 @@ class TestRegistry(unittest.TestCase):
             self.assertTrue(t["principle"], t["id"] + " 缺少原理讲解")
             self.assertTrue(t["summary"], t["id"] + " 缺少简介")
             for f in t["inputs"] + t["options"]:
-                self.assertIn(f["type"], {"text", "string", "number", "select", "segmented", "switch"})
+                self.assertIn(f["type"], {"text", "string", "number", "select", "segmented", "switch", "file"})
             self.assertTrue(source(t["id"]))
 
     def test_errors_are_readable(self):

@@ -12,6 +12,7 @@
 ========== ==============================
 text       TextArea（多行文本）
 string     TextField（单行文本）
+file       FileUpload（文件，工具收到 bytes）
 number     NumberInput
 select     Select
 segmented  SegmentedControl
@@ -24,10 +25,19 @@ import json
 
 CATEGORIES = {
     "encoding": {"title": "编码", "chapter": "1.1"},
+    "forensics": {"title": "杂项与取证", "chapter": "1.2～1.5"},
+    "stego": {"title": "隐写", "chapter": "2"},
     "classical": {"title": "古典密码", "chapter": "3.1"},
+    "modern": {"title": "现代密码", "chapter": "3.2～3.3"},
     "hash": {"title": "哈希", "chapter": "3.4"},
+    "web": {"title": "Web", "chapter": "4"},
+    "reverse": {"title": "逆向", "chapter": "5"},
+    "pwn": {"title": "PWN", "chapter": "6～7"},
+    "ics": {"title": "工控", "chapter": "8"},
     "misc": {"title": "通用", "chapter": ""},
 }
+
+FIELD_TYPES = ("text", "string", "number", "select", "segmented", "switch", "file")
 
 _TOOLS = {}
 
@@ -75,6 +85,9 @@ def tool(id, title, category, chapter="", summary="", principle="", inputs=None,
     """
     if category not in CATEGORIES:
         raise ValueError("未知分类: %s" % category)
+    for f in list(inputs or []) + list(options or []):
+        if f["type"] not in FIELD_TYPES:
+            raise ValueError("未知字段类型: %s" % f["type"])
 
     def deco(fn):
         if id in _TOOLS:
@@ -134,6 +147,9 @@ def normalize(result):
     """
     if result is None:
         return {"type": "text", "value": ""}
+    if isinstance(result, (bytes, bytearray)):
+        from .util import show_both
+        return normalize(show_both(bytes(result)))
     if isinstance(result, str):
         return {"type": "text", "value": result}
     if isinstance(result, dict) and "type" in result:
@@ -143,6 +159,14 @@ def normalize(result):
     return {"type": "text", "value": str(result)}
 
 
+def decode_param(v):
+    """跨语言传参时字节写成 {"$b64": "..."}，在这里还原成 bytes。"""
+    if isinstance(v, dict) and "$b64" in v:
+        import base64
+        return base64.b64decode(v["$b64"])
+    return v
+
+
 def run(id, params=None):
     """调用工具，返回 ``{"ok": True, "output": ...}`` 或 ``{"ok": False, "error": ...}``。"""
     try:
@@ -150,7 +174,10 @@ def run(id, params=None):
         p = defaults(t)
         p.update(params or {})
         known = {f["id"] for f in t["inputs"] + t["options"]}
-        p = {k: v for k, v in p.items() if k in known}
+        p = {k: decode_param(v) for k, v in p.items() if k in known}
+        for f in t["inputs"] + t["options"]:
+            if f["type"] == "file" and p.get(f["id"]) in (None, ""):
+                p[f["id"]] = b""
         return {"ok": True, "output": normalize(t["fn"](**p))}
     except ToolError as e:
         return {"ok": False, "error": str(e)}

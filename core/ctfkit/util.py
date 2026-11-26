@@ -9,15 +9,68 @@ PRINTABLE = set(string.printable.encode("ascii"))
 FLAG_RE = re.compile(r"(?:flag|ctf|key)\{[^{}\s]{1,200}\}", re.I)
 
 INPUT_FORMATS = ("文本", "十六进制")
+DATA_FORMATS = ("文本", "十六进制", "Base64")
+OUTPUT_FORMATS = ("十六进制", "Base64", "文本")
 
 
 def to_bytes(text, fmt="文本"):
-    """把界面上输入的内容转成字节。``fmt`` 为“文本”（按 UTF-8）或“十六进制”。"""
-    if isinstance(text, bytes):
-        return text
+    """把界面上输入的内容转成字节。``fmt`` 为“文本”（按 UTF-8）、“十六进制”或“Base64”。"""
+    if isinstance(text, (bytes, bytearray)):
+        return bytes(text)
     if fmt == "十六进制":
         return parse_hex(text)
+    if fmt == "Base64":
+        import base64
+        import binascii
+        s = re.sub(r"\s", "", text)
+        try:
+            return base64.b64decode(s + "=" * (-len(s) % 4))
+        except (binascii.Error, ValueError):
+            raise ToolError("不是有效的 Base64")
     return text.encode("utf-8")
+
+
+def from_bytes(data, fmt="十六进制"):
+    """把字节按指定格式写出：十六进制、Base64 或文本（不可读时自动改为十六进制）。"""
+    if fmt == "Base64":
+        import base64
+        return base64.b64encode(data).decode("ascii")
+    if fmt == "文本":
+        return show(data)
+    return data.hex()
+
+
+def parse_int(s, name="数字"):
+    """解析整数：支持十进制、0x 十六进制、0b 二进制、0o 八进制，忽略空白与下划线。"""
+    t = re.sub(r"[\s_]", "", str(s))
+    if not t:
+        raise ToolError("%s不能为空" % name)
+    try:
+        return int(t, 0) if re.match(r"^-?0[xXbBoO]", t) else int(t)
+    except ValueError:
+        raise ToolError("%s不是整数：%s" % (name, t[:40]))
+
+
+def i2b(n):
+    """整数转字节（大端序），相当于 Crypto.Util.number.long_to_bytes。"""
+    return n.to_bytes(max(1, (n.bit_length() + 7) // 8), "big")
+
+
+def b2i(b):
+    return int.from_bytes(b, "big")
+
+
+def image(data, mime="image/png", caption=""):
+    """图片输出，界面用 ImageViewer 显示。"""
+    import base64
+    return {"type": "image", "mime": mime, "data": base64.b64encode(data).decode("ascii"), "caption": caption}
+
+
+def file_out(data, name, mime="application/octet-stream", caption=""):
+    """文件输出，界面提供下载。"""
+    import base64
+    return {"type": "file", "name": name, "mime": mime, "size": len(data),
+            "data": base64.b64encode(data).decode("ascii"), "caption": caption}
 
 
 def parse_hex(text):

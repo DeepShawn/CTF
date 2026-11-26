@@ -358,7 +358,7 @@ docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:latest
 |---|---|---|---|
 | **v0.1** ✅ | 核心与环境 | `ctfkit` 包结构与工具描述文件格式；编码（1.1）、古典密码（3.1）、哈希（3.4）首批约 40 个工具；命令行入口；Docker 完整环境（Python 2.7 + 3）；2.4 节可用性表逐项验证 | 已完成，见下方说明 |
 | **v0.2** | Web 版 | TesseraUI Web + Pyodide（Web Worker）；五个主页面；由描述文件生成工具页；PWA 离线；部署到 GitHub Pages | 3 周 |
-| **v0.3** | Android 版 | Compose + TesseraUI + Chaquopy；手机布局；与 Web 共用工具描述文件 | 3～4 周 |
+| **v0.3** 🔶 | Android 版 | Compose + TesseraUI + Chaquopy；手机布局；与 Web 共用工具描述文件 | 3～4 周 |
 | **v0.4** | iOS 版 | SwiftUI + TesseraUI + CPython 3.13；手机布局；TestFlight 测试 | 3～4 周 |
 | **v0.5** 🔶 | 杂项、取证与隐写 | 教材第 1 章其余部分与第 2 章：流量、日志、取证、压缩包、图像 / 音频 / 文本隐写、二维码 | 4 周 |
 | **v0.6** 🔶 | 现代密码学与 Web | 第 3 章对称、非对称、哈希扩展攻击；第 4 章速查与本地工具；本地运行器 | 4 周 |

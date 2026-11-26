@@ -28,7 +28,8 @@ CTFKit 是一个 CTF（夺旗赛）工具包。它按参考教材的章节编排
 | **网页** | 打开 <https://deepshawn.github.io/CTF/>。首次使用需下载约 10 MB 的 Python 运行环境，之后可离线使用 |
 | **Docker 完整环境** | `docker run -it --rm -v "$PWD:/work" ghcr.io/deepshawn/ctfkit:lite`，Python 2.7 与 Python 3 并存，见 [env/docker](env/docker/README.md) |
 | **命令行** | `cd core && pip install . && ctfkit list`，只需 Python 3.8+，见 [core](core/README.md) |
-| Android / iOS | 计划在 v0.3、v0.4 推出 |
+| Android | `cd apps/android && gradle :app:assembleDebug`，APK 内嵌 Python 3.12（Chaquopy），见 [apps/android](apps/android/README.md) |
+| iOS | 计划在 v0.4 推出 |
 
 v0.1 包含教材 1.1 编码、3.1 古典密码、3.4 哈希三部分，共 42 个工具。每个工具都附原理讲解，网页中可以直接查看它实际运行的 Python 代码。
 

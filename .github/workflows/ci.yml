@@ -48,3 +48,28 @@ jobs:
         with:
           python-version: "3.13"
       - run: python scripts/build_web.py
+
+  android:
+    name: Android 构建
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@v3
+      - name: 安装 SDK 组件
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+      - name: 构建 Debug APK
+        working-directory: apps/android
+        run: gradle :app:assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ctfkit-debug-apk
+          path: apps/android/app/build/outputs/apk/debug/app-debug.apk
